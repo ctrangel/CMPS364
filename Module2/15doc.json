@@ -1,0 +1,50 @@
+
+{
+  "trash-Team": [
+    {
+      "name": "Patrick Mahomes",
+      "position": "QB",
+      "team": "KC"
+    },
+    {
+      "name": "D'Andre Swift",
+      "position": "RB",
+      "team": "Chi"
+    },
+    {
+      "name": "Najee Harris",
+      "position": "RB",
+      "team": "Pit"
+    },
+    {
+      "name": "Tyreek Hill",
+      "position": "WR",
+      "team": "Mia"
+    },
+    {
+      "name": "George Pickens",
+      "position": "WR",
+      "team": "Pit"
+    },
+    {
+      "name": "Travis Kelce",
+      "position": "TE",
+      "team": "KC"
+    },
+    {
+      "name": "Tyler Lockett",
+      "position": "FLEX",
+      "team": "Sea"
+    },
+    {
+      "name": "Seahawks D/ST",
+      "position": "D/ST",
+      "team": "Sea"
+    },
+    {
+      "name": "Chris Boswell",
+      "position": "K",
+      "team": "Pit"
+    }
+  ]
+}
