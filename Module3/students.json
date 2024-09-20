@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "1",
+    "name": "Alice",
+    "age": 22,
+    "city": "New York",
+    "state": "NY",
+    "grade": 90,
+    "enrollment_year": 2021
+  },
+  {
+    "_id": "2",
+    "name": "Bob",
+    "age": 19,
+    "city": "Los Angeles",
+    "state": "CA",
+    "grade": 85,
+    "enrollment_year": 2019
+  },
+  {
+    "_id": "3",
+    "name": "Charlie",
+    "age": 24,
+    "city": "Chicago",
+    "state": "IL",
+    "grade": 70,
+    "enrollment_year": 2022
+  },
+  {
+    "_id": "4",
+    "name": "David",
+    "age": 21,
+    "city": "Austin",
+    "state": "TX",
+    "grade": 88,
+    "enrollment_year": 2020
+  },
+  {
+    "_id": "5",
+    "name": "Eve",
+    "age": 23,
+    "city": "Miami",
+    "state": "FL",
+    "grade": 95,
+    "enrollment_year": 2022
+  }
+]
