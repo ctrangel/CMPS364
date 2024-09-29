@@ -1,0 +1,48 @@
+
+
+
+
+[
+  {
+    "_id": 1,
+    "userId": 101,
+    "activity": "login",
+    "timestamp": "2024-08-01T08:00:00Z",
+    "status": "success"
+  },
+  {
+    "_id": 2,
+    "userId": 102,
+    "activity": "logout",
+    "timestamp": "2024-08-01T09:00:00Z",
+    "status": "success"
+  },
+  {
+    "_id": 3,
+    "userId": 103,
+    "activity": "file upload",
+    "timestamp": "2024-07-25T12:00:00Z",
+    "status": "failure"
+  },
+  {
+    "_id": 4,
+    "userId": 104,
+    "activity": "login",
+    "timestamp": "2024-06-20T10:00:00Z",
+    "status": "success"
+  },
+  {
+    "_id": 5,
+    "userId": 105,
+    "activity": "password change",
+    "timestamp": "2024-07-10T14:30:00Z",
+    "status": "success"
+  },
+  {
+    "_id": 6,
+    "userId": 101,
+    "activity": "file download",
+    "timestamp": "2024-08-02T15:45:00Z",
+    "status": "success"
+  }
+]

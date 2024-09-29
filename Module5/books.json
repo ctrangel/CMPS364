@@ -1,0 +1,45 @@
+[
+  {
+    "_id": 1,
+    "title": "Book One",
+    "categories": ["Fiction", "Adventure"],
+    "author": "Author One",
+    "year": 2021
+  },
+  {
+    "_id": 2,
+    "title": "Book Two",
+    "categories": ["Non-Fiction", "Biography"],
+    "author": "Author Two",
+    "year": 2019
+  },
+  {
+    "_id": 3,
+    "title": "Book Three",
+    "categories": ["Fiction", "Romance", "Drama"],
+    "author": "Author Three",
+    "year": 2020
+  },
+  {
+    "_id": 4,
+    "title": "Book Four",
+    "categories": ["Science", "Non-Fiction"],
+    "author": "Author Four",
+    "year": 2018
+  },
+  {
+    "_id": 5,
+    "title": "Book Five",
+    "categories": ["Adventure", "Fiction"],
+    "author": "Author Five",
+    "year": 2022
+  },
+  {
+    "_id": 6,
+    "title": "Book Six",
+    "categories": ["Drama", "Biography"],
+    "author": "Author Six",
+    "year": 2021
+  }
+]
+
