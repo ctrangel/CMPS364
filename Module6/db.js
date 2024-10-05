@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 let dbConnection;
-const uri = "mongodb://localhost:27017/DB_uno"; // Update this with your actual MongoDB URI
+const uri = "mongodb://localhost:27017/DB_uno"; 
 
 function connectToDb(callback) {
   MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
