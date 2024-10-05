@@ -1,0 +1,80 @@
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f1ea;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            height: 300px;
+        }
+        .book-card {
+            background-color: #fff;
+            width: 200px;
+            margin: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .book-card:hover {
+            transform: scale(1.05);
+        }
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .book-author {
+            font-size: 1rem;
+            color: #555;
+        }
+        .book-shelves, .book-rating {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .pagination button {
+            background-color: #ffcc80;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .pagination button:hover {
+            background-color: #ffab40;
+        }
+        .pagination button:disabled {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 10px;
+        }
+        .page-info {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 1rem;
+        }

@@ -1,45 +1,260 @@
 [
   {
-    "_id": 1,
-    "title": "Book One",
-    "categories": ["Fiction", "Adventure"],
-    "author": "Author One",
-    "year": 2021
+    "title": "Tinkers",
+    "author": "Harding, Paul",
+    "shelves": "currently-reading",
+    "avg_rating": 3.41
   },
   {
-    "_id": 2,
-    "title": "Book Two",
-    "categories": ["Non-Fiction", "Biography"],
-    "author": "Author Two",
-    "year": 2019
+    "title": "East of Eden",
+    "author": "Steinbeck, John",
+    "shelves": "to-read",
+    "avg_rating": 4.42
   },
   {
-    "_id": 3,
-    "title": "Book Three",
-    "categories": ["Fiction", "Romance", "Drama"],
-    "author": "Author Three",
-    "year": 2020
+    "title": "Light in August",
+    "author": "Faulkner, William",
+    "shelves": "tbr-24",
+    "avg_rating": 3.94
   },
   {
-    "_id": 4,
-    "title": "Book Four",
-    "categories": ["Science", "Non-Fiction"],
-    "author": "Author Four",
-    "year": 2018
+    "title": "The Illustrated Man",
+    "author": "Bradbury, Ray",
+    "shelves": "read",
+    "avg_rating": 4.13
   },
   {
-    "_id": 5,
-    "title": "Book Five",
-    "categories": ["Adventure", "Fiction"],
-    "author": "Author Five",
-    "year": 2022
+    "title": "Klara and the Sun",
+    "author": "Ishiguro, Kazuo",
+    "shelves": "to-read",
+    "avg_rating": 3.74
   },
   {
-    "_id": 6,
-    "title": "Book Six",
-    "categories": ["Drama", "Biography"],
-    "author": "Author Six",
-    "year": 2021
+    "title": "Project Hail Mary",
+    "author": "Weir, Andy",
+    "shelves": "to-read",
+    "avg_rating": 4.51
+  },
+  {
+    "title": "Annihilation (Southern Reach, #1)",
+    "author": "VanderMeer, Jeff",
+    "shelves": "to-read",
+    "avg_rating": 3.77
+  },
+  {
+    "title": "Wilder Girls",
+    "author": "Power, Rory",
+    "shelves": "read",
+    "avg_rating": 3.46
+  },
+  {
+    "title": "One Dark Window (The Shepherd King, #1)",
+    "author": "Gillig, Rachel",
+    "shelves": "to-read",
+    "avg_rating": 4.3
+  },
+  {
+    "title": "Piranesi",
+    "author": "Clarke, Susanna",
+    "shelves": "to-read",
+    "avg_rating": 4.23
+  },
+  {
+    "title": "Jade City (The Green Bone Saga, #1)",
+    "author": "Lee, Fonda",
+    "shelves": "to-read",
+    "avg_rating": 4.09
+  },
+  {
+    "title": "Band of Brothers: E Company, 506th Regiment, 101st Airborne from Normandy to Hitler's Eagle's Nest",
+    "author": "Ambrose, Stephen E.",
+    "shelves": "read",
+    "avg_rating": 4.43
+  },
+  {
+    "title": "Fire & Blood (A Targaryen History, #1)",
+    "author": "Martin, George R.R.",
+    "shelves": "read",
+    "avg_rating": 4.04
+  },
+  {
+    "title": "A Game of Thrones (A Song of Ice and Fire, #1)",
+    "author": "Martin, George R.R.",
+    "shelves": "to-read",
+    "avg_rating": 4.44
+  },
+  {
+    "title": "The Way of Kings (The Stormlight Archive, #1)",
+    "author": "Sanderson, Brandon",
+    "shelves": "to-read",
+    "avg_rating": 4.66
+  },
+  {
+    "title": "The Final Empire (Mistborn, #1)",
+    "author": "Sanderson, Brandon",
+    "shelves": "to-read",
+    "avg_rating": 4.48
+  },
+  {
+    "title": "Shōgun: Part Two (Asian Saga, #2)",
+    "author": "Clavell, James",
+    "shelves": "read",
+    "avg_rating": 4.62
+  },
+  {
+    "title": "The Hitchhiker’s Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)",
+    "author": "Adams, Douglas",
+    "shelves": "read",
+    "avg_rating": 4.23
+  },
+  {
+    "title": "Shōgun (Asian Saga, #1)",
+    "author": "Clavell, James",
+    "shelves": "read",
+    "avg_rating": 4.41
+  },
+  {
+    "title": "Bloodchild",
+    "author": "Butler, Octavia E.",
+    "shelves": "read",
+    "avg_rating": 4.01
+  },
+  {
+    "title": "Girl",
+    "author": "Kincaid, Jamaica",
+    "shelves": "read",
+    "avg_rating": 4.09
+  },
+  {
+    "title": "Bullet in the Brain",
+    "author": "Wolff, Tobias",
+    "shelves": "read",
+    "avg_rating": 3.83
+  },
+  {
+    "title": "Elbow Room",
+    "author": "McPherson, James Alan",
+    "shelves": "read",
+    "avg_rating": 3.71
+  },
+  {
+    "title": "White Angel",
+    "author": "Cunningham, Michael",
+    "shelves": "read",
+    "avg_rating": 4.44
+  },
+  {
+    "title": "Cathedral",
+    "author": "Carver, Raymond",
+    "shelves": "read",
+    "avg_rating": 4.25
+  },
+  {
+    "title": "By Appointment Only",
+    "author": "Matheson, Richard",
+    "shelves": "read",
+    "avg_rating": 2.6
+  },
+  {
+    "title": "Babel, or the Necessity of Violence: An Arcane History of the Oxford Translators' Revolution",
+    "author": "Kuang, R.F.",
+    "shelves": "read",
+    "avg_rating": 4.18
+  },
+  {
+    "title": "Charlie Wilson's War: The Extraordinary Story of How the Wildest Man in Congress and a Rogue CIA Agent Changed the History of our Times",
+    "author": "Crile, George",
+    "shelves": "read",
+    "avg_rating": 4.0
+  },
+  {
+    "title": "The Song of Achilles",
+    "author": "Miller, Madeline",
+    "shelves": "read",
+    "avg_rating": 4.32
+  },
+  {
+    "title": "The Burning God (The Poppy War, #3)",
+    "author": "Kuang, R.F.",
+    "shelves": "read",
+    "avg_rating": 4.3
+  },
+  {
+    "title": "The Dragon Republic (The Poppy War, #2)",
+    "author": "Kuang, R.F.",
+    "shelves": "read",
+    "avg_rating": 4.37
+  },
+  {
+    "title": "Circe",
+    "author": "Miller, Madeline",
+    "shelves": "to-read",
+    "avg_rating": 4.23
+  },
+  {
+    "title": "The Poppy War (The Poppy War, #1)",
+    "author": "Kuang, R.F.",
+    "shelves": "read",
+    "avg_rating": 4.17
+  },
+  {
+    "title": "Artemis",
+    "author": "Weir, Andy",
+    "shelves": "read",
+    "avg_rating": 3.69
+  },
+  {
+    "title": "Tao Te Ching",
+    "author": "Lao Tzu",
+    "shelves": "read",
+    "avg_rating": 4.3
+  },
+  {
+    "title": "Speak, Okinawa: A Memoir",
+    "author": "Brina, Elizabeth Miki",
+    "shelves": "read",
+    "avg_rating": 4.21
+  },
+  {
+    "title": "The Witch's Heart",
+    "author": "Gornichec, Genevieve",
+    "shelves": "read",
+    "avg_rating": 4.05
+  },
+  {
+    "title": "The Hobbit (The Lord of the Rings, #0)",
+    "author": "Tolkien, J.R.R.",
+    "shelves": "read",
+    "avg_rating": 4.29
+  },
+  {
+    "title": "Station Eleven",
+    "author": "Mandel, Emily St. John",
+    "shelves": "read",
+    "avg_rating": 4.07
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "Fitzgerald, F. Scott",
+    "shelves": "tbr-24",
+    "avg_rating": 3.93
+  },
+  {
+    "title": "The Art of The Fellowship of the Ring (The Lord of the Rings)",
+    "author": "Russell, Gary",
+    "shelves": "to-read",
+    "avg_rating": 4.6
+  },
+  {
+    "title": "The Lord of the Rings: Weapons and Warfare",
+    "author": "Smith, Chris",
+    "shelves": "to-read",
+    "avg_rating": 4.58
+  },
+  {
+    "title": "Dune (Dune, #1)",
+    "author": "Herbert, Frank",
+    "shelves": "to-read",
+    "avg_rating": 4.28
   }
 ]
-
