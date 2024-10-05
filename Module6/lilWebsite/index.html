@@ -1,145 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Library</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <h1>Book Library</h1>
-    <div class="controls">
-        <label for="sort">Sort by:</label>
-        <select id="sort" onchange="sortBooks()">
-            <option value="default">Default</option>
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="avg_rating">Avg Rating</option>
-        </select>
-    </div>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Lil Library</h1>
 
     <div id="book-container" class="book-container"></div>
-    
     <div class="controls">
-        <button id="firstBtn" onclick="goToFirstPage()">First</button>
-        <div class="pagination">
-            <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
-            <span class="page-info" id="pageInfo">Page 1 of 1</span>
-            <button id="nextBtn" onclick="nextPage()">Next</button>
-        </div>
-        <button id="lastBtn" onclick="goToLastPage()">Last</button>
+      <label for="sort">Sort by:</label>
+      <select id="sort" onchange="sortBooks()">
+        <option value="default">Default</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="avg_rating">Avg Rating</option>
+      </select>
+    </div>
+
+    <div class="controls">
+      <button id="firstBtn" onclick="goToFirstPage()">First</button>
+      <div class="pagination">
+        <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+        <span class="page-info" id="pageInfo">Page 1 of 1</span>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
+      </div>
+      <button id="lastBtn" onclick="goToLastPage()">Last</button>
     </div>
 
     <script>
-        let currentPage = 1;
-        const booksPerPage = 5;
-        let booksData = [];
-        let sortedBooksData = [];
-        let currentSort = 'default';
+      let currentPage = 1;
+      const booksPerPage = 5;
+      let booksData = [];
+      let sortedBooksData = [];
+      let currentSort = "default";
 
-        // Fetch books from the local server
-        fetch('http://localhost:4000/books')
-            .then(response => response.json())
-            .then(data => {
-                booksData = data;
-                sortedBooksData = [...booksData]; // Create a copy for sorting
-                displayBooks();
-                updatePageInfo();
-            })
-            .catch(error => console.error('Error fetching book data:', error));
+      // Fetch books from the local server
+      fetch("http://localhost:4000/books")
+        .then((response) => response.json())
+        .then((data) => {
+          booksData = data;
+          sortedBooksData = [...booksData]; // Create a copy for sorting
+          displayBooks();
+          updatePageInfo();
+        })
+        .catch((error) => console.error("Error fetching book data:", error));
 
-        // Display books for the current page
-        function displayBooks() {
-            const bookContainer = document.getElementById('book-container');
-            bookContainer.innerHTML = ''; // Clear the container
+      // Display books for the current page
+      function displayBooks() {
+        const bookContainer = document.getElementById("book-container");
+        bookContainer.innerHTML = ""; // Clear the container
 
-            const startIndex = (currentPage - 1) * booksPerPage;
-            const endIndex = startIndex + booksPerPage;
-            const booksToShow = sortedBooksData.slice(startIndex, endIndex);
+        const startIndex = (currentPage - 1) * booksPerPage;
+        const endIndex = startIndex + booksPerPage;
+        const booksToShow = sortedBooksData.slice(startIndex, endIndex);
 
-            booksToShow.forEach(book => {
-                const bookCard = document.createElement('div');
-                bookCard.classList.add('book-card');
+        booksToShow.forEach((book) => {
+          const bookCard = document.createElement("div");
+          bookCard.classList.add("book-card");
 
-                bookCard.innerHTML = `
+          bookCard.innerHTML = `
                     <div class="book-title">${book.title}</div>
                     <div class="book-author">${book.author}</div>
                     <div class="book-shelves"><strong>Shelves:</strong> ${book.shelves}</div>
                     <div class="book-rating"><strong>Avg Rating:</strong> ${book.avg_rating}</div>
                 `;
-                bookContainer.appendChild(bookCard);
-            });
+          bookContainer.appendChild(bookCard);
+        });
 
-            // Update pagination buttons
-            document.getElementById('prevBtn').disabled = currentPage === 1;
-            document.getElementById('nextBtn').disabled = currentPage === getTotalPages();
-            document.getElementById('firstBtn').disabled = currentPage === 1;
-            document.getElementById('lastBtn').disabled = currentPage === getTotalPages();
+        // Update pagination buttons
+        document.getElementById("prevBtn").disabled = currentPage === 1;
+        document.getElementById("nextBtn").disabled =
+          currentPage === getTotalPages();
+        document.getElementById("firstBtn").disabled = currentPage === 1;
+        document.getElementById("lastBtn").disabled =
+          currentPage === getTotalPages();
+      }
+
+      // Go to the next page
+      function nextPage() {
+        if (currentPage < getTotalPages()) {
+          currentPage++;
+          displayBooks();
+          updatePageInfo();
         }
+      }
 
-        // Go to the next page
-        function nextPage() {
-            if (currentPage < getTotalPages()) {
-                currentPage++;
-                displayBooks();
-                updatePageInfo();
-            }
+      // Go to the previous page
+      function prevPage() {
+        if (currentPage > 1) {
+          currentPage--;
+          displayBooks();
+          updatePageInfo();
         }
+      }
 
-        // Go to the previous page
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                displayBooks();
-                updatePageInfo();
-            }
+      // Go to the first page
+      function goToFirstPage() {
+        currentPage = 1;
+        displayBooks();
+        updatePageInfo();
+      }
+
+      // Go to the last page
+      function goToLastPage() {
+        currentPage = getTotalPages();
+        displayBooks();
+        updatePageInfo();
+      }
+
+      // Sort books based on selection
+      function sortBooks() {
+        const sortBy = document.getElementById("sort").value;
+
+        if (sortBy === "default") {
+          sortedBooksData = [...booksData]; // Reset to default order
+        } else {
+          sortedBooksData.sort((a, b) => {
+            if (a[sortBy] < b[sortBy]) return -1;
+            if (a[sortBy] > b[sortBy]) return 1;
+            return 0;
+          });
         }
+        currentSort = sortBy;
+        currentPage = 1; // Reset to first page
+        displayBooks();
+        updatePageInfo();
+      }
 
-        // Go to the first page
-        function goToFirstPage() {
-            currentPage = 1;
-            displayBooks();
-            updatePageInfo();
-        }
+      // Get the total number of pages
+      function getTotalPages() {
+        return Math.ceil(sortedBooksData.length / booksPerPage);
+      }
 
-        // Go to the last page
-        function goToLastPage() {
-            currentPage = getTotalPages();
-            displayBooks();
-            updatePageInfo();
-        }
-
-        // Sort books based on selection
-        function sortBooks() {
-            const sortBy = document.getElementById('sort').value;
-
-            if (sortBy === 'default') {
-                sortedBooksData = [...booksData]; // Reset to default order
-            } else {
-                sortedBooksData.sort((a, b) => {
-                    if (a[sortBy] < b[sortBy]) return -1;
-                    if (a[sortBy] > b[sortBy]) return 1;
-                    return 0;
-                });
-            }
-            currentSort = sortBy;
-            currentPage = 1; // Reset to first page
-            displayBooks();
-            updatePageInfo();
-        }
-
-        // Get the total number of pages
-        function getTotalPages() {
-            return Math.ceil(sortedBooksData.length / booksPerPage);
-        }
-
-        // Update the page info text (e.g., "Page 1 of 5")
-        function updatePageInfo() {
-            const pageInfo = document.getElementById('pageInfo');
-            pageInfo.textContent = `Page ${currentPage} of ${getTotalPages()}`;
-        }
+      // Update the page info text (e.g., "Page 1 of 5")
+      function updatePageInfo() {
+        const pageInfo = document.getElementById("pageInfo");
+        pageInfo.textContent = `Page ${currentPage} of ${getTotalPages()}`;
+      }
     </script>
-
-</body>
+  </body>
 </html>
