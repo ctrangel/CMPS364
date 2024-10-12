@@ -44,7 +44,6 @@ app.get("/books/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Convert the string `id` to MongoDB `ObjectId`
     const book = await db.collection("books").findOne({ _id: new ObjectId(id) });
     if (book) {
       res.json(book);
