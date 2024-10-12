@@ -1,0 +1,313 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f1ea;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  background-image: url("/Module6/lilWebsite/media/hfn210qr.bmp");
+}
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 20px;
+  background-color: #f8f1de;
+  padding: 10px;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  height: auto;
+}
+.book-card {
+  background-color: #fcf5e2; /* Book cover */
+  width: 200px;
+  height: 250px;
+  margin: 15px;
+  padding: 15px;
+  position: relative;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  border-radius: 4px; /* Slight rounding for book shape */
+  text-align: center;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(0deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+/* Spine on the left */
+.book-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px; /* Spine width */
+  height: 100%;
+  background-color: #6a5d4f; /* Spine color */
+  box-shadow: inset 2px 0px 8px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Inner pages look */
+.book-card::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 32px;
+  width: calc(100% - 35px);
+  height: calc(100% - 10px);
+  background: linear-gradient(
+    90deg,
+    #f9f9f9 10%,
+    transparent 10%
+  ); /* Simulates pages */
+  background-size: 3px 100%;
+  z-index: 0;
+}
+
+/* Title and content inside the book */
+.book-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 20px 0;
+  z-index: 1;
+  position: relative;
+}
+
+.book-author {
+  font-size: 1rem;
+  color: #555;
+  z-index: 1;
+  position: relative;
+}
+
+.book-shelves,
+.book-rating {
+  font-size: 0.9rem;
+  margin-top: 5px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Hover effect for opening book */
+.book-card:hover {
+  transform: perspective(1000px) rotateY(-10deg);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); 
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+}
+.book-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.book-author {
+  font-size: 1rem;
+  color: #555;
+}
+.book-shelves,
+.book-rating {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+.controls {
+  text-align: center;
+  margin: 20px 0;
+}
+.pagination {
+  display: inline-block;
+  margin: 0 10px;
+}
+.pagination button {
+  background-color: #fcf5e2;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+.pagination button:hover {
+  background-color: #c6c8bb;
+}
+.pagination button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+select {
+  padding: 10px;
+  font-size: 1rem;
+  margin: 10px;
+}
+.page-info {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 1rem;
+}
+
+#lastBtn {
+  background-color: #c6c8bb;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+#lastBtn:hover {
+  background-color: #c6c8bb73;
+}
+
+#firstBtn {
+  background-color: #c6c8bb;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+#firstBtn:hover {
+  background-color: #c6c8bb73;
+}
+
+#pageInfo {
+  display: inline-block;
+  margin: 20px;
+  font-size: 1rem;
+  background-color: #c6c8bb;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#sort {
+  display: inline-block;
+  font-size: 1rem;
+  background-color: #c6c8bb;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.controls label {
+  display: inline-block;
+  margin: 10px;
+  background-color: #c6c8bb;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 2em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fdf6e3; /* Background color similar to second image */
+  padding: 0.5em 1em;
+  width: 25em;
+  transition: width 0.3s ease;
+}
+
+.search-container input {
+  flex-grow: 1;
+  height: 2.5em;
+  border: none;
+  border-radius: 1.5em;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  color: #6a5d4f;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.search-container input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.search-container .button {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background-color: #6a5d4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5em;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  color: #fdf6e3;
+}
+
+.search-container .button i {
+  font-size: 1.2em;
+}
+
+.search-container .button:hover {
+  background-color: #594c40; /* Slightly darker on hover */
+}
+
+#search-option {
+  appearance: none; /* Removes the default browser styling */
+  background-color: #fff;
+  color: #6a5d4f;
+  border: none;
+  border-radius: 1.5em;
+  padding: 0.5em 1em;
+  margin-left: 10px;
+  font-size: 1em;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s;
+  outline: none;
+}
+
+/* Hover and focus effects */
+#search-option:hover,
+#search-option:focus {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Add a dropdown arrow icon */
+#search-option::after {
+  content: "\25BC"; /* Unicode for a down arrow */
+  font-size: 0.75em;
+  margin-left: 10px;
+  color: #6a5d4f;
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  background-color: #fdf6e3;
+  padding: 10px;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+}

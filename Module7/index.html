@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <script src="scripts.js"></script>
+    <h1>Lil Library</h1>
+
+    <!-- Search Bar -->
+    <div class="container">
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="search"
+          onkeypress="handleEnter(event)"
+        />
+        <select id="search-option">
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="id">ID</option>
+        </select>
+        <a class="button" onclick="searchBooks()">
+          <i class="fa fa-search"></i>
+        </a>
+      </div>
+    </div>
+
+    <div id="book-container" class="book-container"></div>
+
+    <!-- Sort and Pagination Controls -->
+    <div class="controls">
+      <label for="sort">Sort by:</label>
+      <select id="sort" onchange="sortBooks()">
+        <option value="default">Default</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="avg_rating">Avg Rating</option>
+      </select>
+    </div>
+
+    <div class="controls">
+      <button id="firstBtn" onclick="goToFirstPage()">First</button>
+      <div class="pagination">
+        <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+        <span class="page-info" id="pageInfo">Page 1 of 1</span>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
+      </div>
+      <button id="lastBtn" onclick="goToLastPage()">Last</button>
+    </div>
+  </body>
+</html>
