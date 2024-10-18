@@ -55,3 +55,55 @@ app.get("/books/:id", async (req, res) => {
   }
 });
 
+
+
+
+// Fetch by title                                  ######################### Module 8 add &&&&&&&&&&&&&&&&&&&&&&&&&&
+app.get("/books/title/:title", async (req, res) => {
+  const db = getDb();
+  const { title } = req.params;
+
+  try {
+    const book = await db.collection("books").findOne({ title });
+    if (book) {
+      res.json(book);
+    } else {
+      res.status(404).json({ error: "Book not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "An error occurred while fetching the book" });
+  }
+});
+
+// maybe we could perhaps add a book or two???     ######################### Module 8 add &&&&&&&&&&&&&&&&&&&&&&&&&&
+
+app.post("/books", async (req, res) => {
+  const db = getDb();
+  const { title, author, shelves, avg_rating } = req.body;
+
+  // Validate the input
+  if (!title || !author || !shelves || avg_rating === undefined) {
+    return res
+      .status(400)
+      .json({ error: "Title, author, shelves, and avg_rating are required." });
+  }
+
+  const newBook = {
+    title,
+    author,
+    shelves,
+    avg_rating,
+  };
+
+  try {
+    const result = await db.collection("books").insertOne(newBook);
+    res.status(201).json({
+      message: "Book successfully added!",
+      // return the newly added book
+      book: newBook,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add the book" });
+  }
+});
+
