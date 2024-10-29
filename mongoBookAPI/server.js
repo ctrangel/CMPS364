@@ -107,3 +107,70 @@ app.post("/books", async (req, res) => {
   }
 });
 
+// DELETION STATION     ######################### Module 9 add &&&&&&&&&&&&&&&&&&&&&&&&&&
+
+// Delete a book by ID
+app.delete("/books/:id", async (req, res) => {
+  const db = getDb();
+  const { id } = req.params;
+
+  try {
+    const result = await db.collection("books").deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount === 1) {
+      res.json({ message: "Book deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Book not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete the book" });
+  }
+}
+);
+
+// delete without ID
+app.delete("/books", async (req, res) => {
+  const db = getDb();
+  const { title, author } = req.query;
+
+  if (!title && !author) {
+    return res
+      .status(400)
+      .json({ error: "Title or author is required to delete a book" });
+  }
+
+  try {
+    const query = {};
+    if (title) query.title = new RegExp(`^${title}$`, "i"); // Case-insensitive exact match
+    if (author) query.author = new RegExp(`^${author}$`, "i");
+
+    const result = await db.collection("books").deleteOne(query);
+    if (result.deletedCount > 0) {
+      res.json({ message: "Book deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Book not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete the book" });
+  }
+});
+
+
+// Purge all books 
+app.delete("/books_copy/purge", async (req, res) => {
+  const db = getDb();
+  try {
+    const result = await db.collection("books_copy").deleteMany({});
+    console.log(`Deleted documents count: ${result.deletedCount}`);
+    res.json({ message: `${result.deletedCount} books purged successfully` });
+  } catch (error) {
+    console.error("Detailed Purge Error:", error.message || error);
+    res.status(500).json({
+      error: "Failed to purge books",
+      details: error.message || "Unknown MongoDB error",
+    });
+  }
+});
+
+
+
+
