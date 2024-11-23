@@ -2,33 +2,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Blog</title>
+    <title>Blogington Station</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
   </head>
   <body>
-    <h1>Welcome to My Blog</h1>
-    <a href="/posts/new">Create a New Post</a>
-    <ul>
-      <% posts.forEach(post => { %>
-      <li>
-        <a href="/posts/<%= post._id %>"><%= post.title %></a>
-        <p><%= post.createdAt.toDateString() %></p>
-      </li>
-      <% }); %>
-    </ul>
-  </body>
-</html>
-2. SIngle Post Page (post.ejs)
-<!-- views/post.ejs -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= post.title %></title>
-  </head>
-  <body>
-    <h1><%= post.title %></h1>
-    <p><%= post.createdAt.toDateString() %></p>
-    <p><%= post.content %></p>
-    <a href="/">Back to Home</a>
+    <section class="section">
+      <div class="container">
+        <h1 class="title has-text-centered">The Bog Blog</h1>
+        <a class="button is-primary is-light" href="/posts/new"
+          >Create a New Post</a
+        >
+        <ul class="mt-4">
+          <% posts.forEach(post => { %>
+          <li class="box">
+            <a class="title is-4" href="/posts/<%= post._id %>"
+              ><%= post.title %></a
+            >
+            <p class="is-size-7 has-text-grey">
+              <%= post.createdAt.toDateString() %>
+            </p>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
   </body>
 </html>

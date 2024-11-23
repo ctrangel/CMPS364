@@ -1,9 +1,20 @@
-
-
-const mongoose = require("mongoose");
-const postSchema = new mongoose.Schema({
-title: String,
-content: String,
-createdAt: { type: Date, default: Date.now },
-});
-module.exports = mongoose.model("Post", postSchema);
+<!-- views/post.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= post.title %></title>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="box">
+        <h1 class="title"><%= post.title %></h1>
+        <p class="is-size-7 has-text-grey"><%= post.createdAt.toDateString() %></p>
+        <p class="content mt-4"><%= post.content %></p>
+      </div>
+      <a class="button is-link" href="/">Back to Home</a>
+    </div>
+  </section>
+</body>
+</html>
