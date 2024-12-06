@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             publication_year,
             rating,
             read_status,
+            availability: "available", // Default to available when adding a book
           }),
         });
 
@@ -149,6 +150,20 @@ function renderBooks(books) {
         </div>
       </td>
       <td>
+        <div class="select is-small">
+          <select onchange="updateBook('${
+            book.id
+          }', 'availability', this.value)">
+            <option value="available" ${
+              book.availability === "available" ? "selected" : ""
+            }>Available</option>
+            <option value="unavailable" ${
+              book.availability === "unavailable" ? "selected" : ""
+            }>Unavailable</option>
+          </select>
+        </div>
+      </td>
+      <td>
         <button class="button is-small is-danger" onclick="confirmDeleteBook('${
           book.id
         }')">Delete</button>
@@ -165,6 +180,8 @@ async function updateBook(id, field, value) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ field, value }),
     });
+
+    fetchBooks(); // Refresh list after update
   } catch (error) {
     console.error("Error updating book:", error);
   }

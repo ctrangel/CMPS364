@@ -33,6 +33,7 @@ app.get("/books", async (req, res) => {
         publication_year: book.publication_year,
         rating: book.rating,
         read_status: book.read_status,
+        availability: book.availability || "available", // Default to "available" if not set
       }))
     );
   } catch (error) {
@@ -42,10 +43,19 @@ app.get("/books", async (req, res) => {
 
 // Add a new book
 app.post("/books", async (req, res) => {
-  const { title, author, publication_year, rating, read_status } = req.body;
+  const {
+    title,
+    author,
+    publication_year,
+    rating,
+    read_status,
+    availability = "available",
+  } = req.body;
 
   if (!title || !author || !publication_year || !rating || !read_status) {
-    return res.status(400).json({ error: "All fields are required." });
+    return res
+      .status(400)
+      .json({ error: "All fields except availability are required." });
   }
 
   try {
@@ -55,17 +65,17 @@ app.post("/books", async (req, res) => {
       publication_year,
       rating,
       read_status,
+      availability,
     });
-    res
-      .status(201)
-      .json({
-        id: result.insertedId,
-        title,
-        author,
-        publication_year,
-        rating,
-        read_status,
-      });
+    res.status(201).json({
+      id: result.insertedId,
+      title,
+      author,
+      publication_year,
+      rating,
+      read_status,
+      availability,
+    });
   } catch (error) {
     res.status(500).json({ error: "Failed to add the book" });
   }
@@ -111,3 +121,4 @@ app.delete("/books/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to delete the book" });
   }
 });
+
