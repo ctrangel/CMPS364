@@ -3,7 +3,6 @@
 Welcome to the Library Book Tracker, the ultimate tool to manage your book collection with ease and style! 🚀
 🖥️ Live Demo
 
-🔥 Coming Soon! 🔥
 ✨ Features 🎉
 
     🔍 Search & Filter: Quickly find books by title, author, publication year, rating, or read status!
