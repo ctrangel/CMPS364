@@ -1,19 +1,18 @@
 const express = require("express");
 const cors = require("cors");
-const { ObjectId } = require('mongodb'); // Ensure ObjectId is imported correctly
+const { ObjectId } = require("mongodb");
 const { connectToDb, getDb } = require("./db");
 
 const app = express();
 
-// Use CORS middleware
-app.use(cors()); // Ensure proper cross-origin requests
-
-// Middleware to parse JSON request bodies
+app.use(cors());
 app.use(express.json());
 
-// Connect to the database
+let db;
+
 connectToDb((err) => {
   if (!err) {
+    db = getDb();
     app.listen(4000, () => {
       console.log("Server is running on port 4000");
     });
@@ -22,128 +21,87 @@ connectToDb((err) => {
   }
 });
 
-// Root route
-app.get("/", (req, res) => {
-  res.send("MongoDB API!");
-});
-
 // Fetch all books
 app.get("/books", async (req, res) => {
   try {
-    const db = getDb();
     const books = await db.collection("books").find().toArray();
-    res.json(books);
+    res.json(
+      books.map((book) => ({
+        id: book._id,
+        title: book.title,
+        author: book.author,
+        publication_year: book.publication_year,
+        rating: book.rating,
+        read_status: book.read_status,
+      }))
+    );
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve books" });
   }
 });
 
-// Fetch a book by ID
-app.get("/books/:id", async (req, res) => {
-  const db = getDb();
-  const { id } = req.params;
-
-  try {
-    const book = await db.collection("books").findOne({ _id: new ObjectId(id) });
-    if (book) {
-      res.json(book);
-    } else {
-      res.status(404).json({ error: "Book not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: "An error occurred while fetching the book" });
-  }
-});
-
-
-
-
-// Fetch by title                                  ######################### Module 8 add &&&&&&&&&&&&&&&&&&&&&&&&&&
-app.get("/books/title/:title", async (req, res) => {
-  const db = getDb();
-  const { title } = req.params;
-
-  try {
-    const book = await db.collection("books").findOne({ title });
-    if (book) {
-      res.json(book);
-    } else {
-      res.status(404).json({ error: "Book not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: "An error occurred while fetching the book" });
-  }
-});
-
-// maybe we could perhaps add a book or two???     ######################### Module 8 add &&&&&&&&&&&&&&&&&&&&&&&&&&
-
+// Add a new book
 app.post("/books", async (req, res) => {
-  const db = getDb();
-  const { title, author, shelves, avg_rating } = req.body;
+  const { title, author, publication_year, rating, read_status } = req.body;
 
-  // Validate the input
-  if (!title || !author || !shelves || avg_rating === undefined) {
-    return res
-      .status(400)
-      .json({ error: "Title, author, shelves, and avg_rating are required." });
+  if (!title || !author || !publication_year || !rating || !read_status) {
+    return res.status(400).json({ error: "All fields are required." });
   }
 
-  const newBook = {
-    title,
-    author,
-    shelves,
-    avg_rating,
-  };
-
   try {
-    const result = await db.collection("books").insertOne(newBook);
-    res.status(201).json({
-      message: "Book successfully added!",
-      // return the newly added book
-      book: newBook,
+    const result = await db.collection("books").insertOne({
+      title,
+      author,
+      publication_year,
+      rating,
+      read_status,
     });
+    res
+      .status(201)
+      .json({
+        id: result.insertedId,
+        title,
+        author,
+        publication_year,
+        rating,
+        read_status,
+      });
   } catch (error) {
     res.status(500).json({ error: "Failed to add the book" });
   }
 });
 
-// DELETION STATION     ######################### Module 9 add &&&&&&&&&&&&&&&&&&&&&&&&&&
+// Update a book
+app.put("/books/:id", async (req, res) => {
+  const { id } = req.params;
+  const { field, value } = req.body;
 
-// Delete a book by ID
+  if (!field || value === undefined) {
+    return res.status(400).json({ error: "Field and value are required." });
+  }
+
+  try {
+    const result = await db
+      .collection("books")
+      .updateOne({ _id: new ObjectId(id) }, { $set: { [field]: value } });
+    res.json({
+      message: "Book updated successfully",
+      matchedCount: result.matchedCount,
+      modifiedCount: result.modifiedCount,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update the book" });
+  }
+});
+
+// Delete a book
 app.delete("/books/:id", async (req, res) => {
-  const db = getDb();
   const { id } = req.params;
 
   try {
-    const result = await db.collection("books").deleteOne({ _id: new ObjectId(id) });
-    if (result.deletedCount === 1) {
-      res.json({ message: "Book deleted successfully" });
-    } else {
-      res.status(404).json({ error: "Book not found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Failed to delete the book" });
-  }
-}
-);
-
-// delete without ID
-app.delete("/books", async (req, res) => {
-  const db = getDb();
-  const { title, author } = req.query;
-
-  if (!title && !author) {
-    return res
-      .status(400)
-      .json({ error: "Title or author is required to delete a book" });
-  }
-
-  try {
-    const query = {};
-    if (title) query.title = new RegExp(`^${title}$`, "i"); // Case-insensitive exact match
-    if (author) query.author = new RegExp(`^${author}$`, "i");
-
-    const result = await db.collection("books").deleteOne(query);
+    const result = await db
+      .collection("books")
+      .deleteOne({ _id: new ObjectId(id) });
     if (result.deletedCount > 0) {
       res.json({ message: "Book deleted successfully" });
     } else {
@@ -153,24 +111,3 @@ app.delete("/books", async (req, res) => {
     res.status(500).json({ error: "Failed to delete the book" });
   }
 });
-
-
-// Purge all books 
-app.delete("/books_copy/purge", async (req, res) => {
-  const db = getDb();
-  try {
-    const result = await db.collection("books_copy").deleteMany({});
-    console.log(`Deleted documents count: ${result.deletedCount}`);
-    res.json({ message: `${result.deletedCount} books purged successfully` });
-  } catch (error) {
-    console.error("Detailed Purge Error:", error.message || error);
-    res.status(500).json({
-      error: "Failed to purge books",
-      details: error.message || "Unknown MongoDB error",
-    });
-  }
-});
-
-
-
-
